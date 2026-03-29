@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cgkjjmhhxcb8r"]
 
 [ext_resource type="Script" uid="uid://cx8k2or0lj0wf" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://mynmmx6b8f1t" path="res://assets/sword.png" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 
@@ -9,6 +10,7 @@ motion_mode = 1
 script = ExtResource("1_4flbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981585911]
+texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1853676043]
 shape = SubResource("RectangleShape2D_sh265")
