@@ -5,6 +5,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1113418622]
 motion_mode = 1
 script = ExtResource("1_4flbx")
@@ -14,3 +16,9 @@ texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1853676043]
 shape = SubResource("RectangleShape2D_sh265")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=631590301]
+position = Vector2(50, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1204314490]
+shape = SubResource("RectangleShape2D_onrkg")

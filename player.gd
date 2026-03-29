@@ -1,11 +1,11 @@
 extends CharacterBody2D
-
+@onready var attack_area = $AttackArea
 const SPEED = 200.0
 
 var can_attack = true
 
 func _ready():
-	pass
+	attack_area.monitoring = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack") and can_attack:
@@ -13,8 +13,11 @@ func _process(delta):
 
 func attack():
 	can_attack = false
+	attack_area.monitoring = true 
 	print("SALDIRI!")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.3).timeout
+	attack_area.monitoring = false 
+	await get_tree().create_timer(0.2).timeout
 	can_attack = true
 
 func _physics_process(delta):
