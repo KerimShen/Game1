@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://cf1bnvrocd2kn"]
 
+[ext_resource type="Texture2D" uid="uid://cajak4o1bs3uf" path="res://assets/FirstDungeonLoop.png" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cgkjjmhhxcb8r" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cei1ckd14bgpy" path="res://enemy.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=1085563119]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1360740204]
+texture = ExtResource("1_h2yge")
 
 [node name="CharacterBody2D" parent="." unique_id=1113418622 instance=ExtResource("1_ig7tw")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=659688989]
+
+[node name="Enemy" parent="." unique_id=555959131 instance=ExtResource("2_0xm2m")]

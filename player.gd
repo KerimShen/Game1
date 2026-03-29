@@ -15,6 +15,15 @@ func attack():
 	can_attack = false
 	attack_area.monitoring = true 
 	print("SALDIRI!")
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	var bodies = attack_area.get_overlapping_bodies()
+	print("Bulunan düşman sayısı: ", bodies.size())
+	for body in bodies:
+		if body.has_method("take_damage"):
+			body.take_damage(25)
+	
 	await get_tree().create_timer(0.3).timeout
 	attack_area.monitoring = false 
 	await get_tree().create_timer(0.2).timeout
