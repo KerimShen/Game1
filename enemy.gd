@@ -14,9 +14,17 @@ func _ready():
 
 func _physics_process(delta):
 	if player:
+		var distance = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
 		move_and_slide()
+		
+		if distance < 60:
+			attack_player()
+			
+func attack_player():
+	if player and  player.has_method("take_damage"):
+		player.take_damage(10)			
 
 func take_damage(amount):
 	health -= amount

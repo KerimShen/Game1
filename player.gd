@@ -3,6 +3,22 @@ extends CharacterBody2D
 const SPEED = 200.0
 
 var can_attack = true
+var healt  = 100 
+var can_take_damage = true
+
+func take_damage(amount):
+	if can_take_damage:
+		healt -= amount
+		print("Oyuncu cani: ", healt)
+		can_take_damage = false
+		await get_tree().create_timer(1.0).timeout
+		can_take_damage = true 
+		if healt <= 0:
+			die() 
+
+func die():
+	print("You Die!")
+	get_tree().reload_current_scene()
 
 func _ready():
 	attack_area.monitoring = false
