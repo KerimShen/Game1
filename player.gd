@@ -9,7 +9,19 @@ func _ready():
 	rect.position = Vector2(-25, -25)
 	rect.color = Color.BLUE
 	add_child(rect)
+	
+var can_attack = true
 
+func _process(delta):
+	if Input.is_action_just_pressed("attack") and can_attack:
+		attack()
+		
+func attack():
+	can_attack = false 
+	print("SALDIRI!")
+	await get_tree().create_timer(0.5).timeout
+	can_attack = true		
+		
 func _physics_process(delta):
 	var direction = Vector2.ZERO
 	
@@ -27,6 +39,3 @@ func _physics_process(delta):
 	
 	velocity = direction.normalized() * SPEED
 	move_and_slide()
-
-func _process(delta):
-	print(velocity)
