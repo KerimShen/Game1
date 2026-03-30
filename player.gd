@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var xp_bar = $"../CanvasLayer/XPBar"
 @onready var level_label = $"../CanvasLayer/Label"
 @onready var anim = $Sprite2D
+@onready var mana_bar = $"../CanvasLayer/ManaBar"
 const SPEED = 200.0
 const GRAVITY = 800.0
 const JUMP_FORCE = -400.0	
@@ -15,6 +16,10 @@ var can_take_damage = true
 var xp = 0
 var level = 1
 var xp_to_next_level = 100
+var max_mana = 100
+var mana = 100
+var mana_regen = 0.5
+
 
 func take_damage(amount):
 	if can_take_damage:
@@ -35,7 +40,7 @@ func _ready():
 	attack_area.monitoring = false
 	
 	var style = StyleBoxFlat.new()
-	style.bg_color = Color(0.8, 0, 0)
+	style.bg_color = Color(1, 0, 0)
 	style.border_width_left = 2
 	style.border_width_right = 2
 	style.border_width_top = 2
@@ -52,6 +57,21 @@ func _ready():
 	bg_style.border_color = Color(0.3, 0, 0)
 	health_bar.add_theme_stylebox_override("background", bg_style)
 	
+	var mana_style = StyleBoxFlat.new()
+	mana_style.bg_color = Color(0.0, 0.3, 0.9)
+	mana_style.border_width_left = 2
+	mana_style.border_width_right = 2
+	mana_style.border_width_top = 2
+	mana_style.border_width_bottom = 2
+	mana_style.border_color = Color(0.0, 0.1, 0.5)
+	mana_bar.add_theme_stylebox_override("fill", mana_style)
+
+	var mana_bg = StyleBoxFlat.new()
+	mana_bg.bg_color = Color(0.1, 0.1, 0.1)
+	mana_bg.border_color = Color(0.0, 0.1, 0.5)
+	mana_bar.add_theme_stylebox_override("background", mana_bg)
+	mana_bar.max_value = max_mana
+	mana_bar.value = mana
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack") and can_attack:
@@ -92,6 +112,10 @@ func _physics_process(delta):
 	velocity.x = direction.x * SPEED
 	move_and_slide()
 	
+	if mana < max_mana:
+		mana += mana_regen * delta
+		mana_bar.value = mana
+	
 	if direction.x != 0:
 		anim.play("run")
 	else:
@@ -118,5 +142,9 @@ func level_up():
 	health = max_health
 	health_bar.max_value = max_health
 	health_bar.value = health
+	max_mana += 20
+	mana = max_mana
+	mana_bar.max_value = max_mana
+	mana_bar.value = mana
 	level_label.text = "Level: " + str(level)
 	print("LEVEL ATLADI! Seviye: ", level)		

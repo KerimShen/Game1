@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cgkjjmhhxcb8r" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cei1ckd14bgpy" path="res://enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bt2htujm7760f" path="res://enemy.gd" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://bh8k54wyp4gpv" path="res://assets/can barı sword.png" id="5_lquwl"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
 
@@ -27,8 +28,10 @@ position = Vector2(500, 0)
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1384231143]
 custom_minimum_size = Vector2(200, 20)
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 100.0
+offset_top = 28.0
+offset_right = 450.0
+offset_bottom = 48.0
 value = 100.0
 show_percentage = false
 
@@ -46,6 +49,19 @@ offset_top = 70.0
 offset_right = 78.0
 offset_bottom = 93.0
 text = "Level: 1"
+
+[node name="ManaBar" type="ProgressBar" parent="CanvasLayer" unique_id=1464698818]
+offset_left = 100.0
+offset_top = 38.0
+offset_right = 200.0
+offset_bottom = 52.0
+show_percentage = false
+
+[node name="HUDBackground" type="TextureRect" parent="CanvasLayer" unique_id=62129764]
+offset_right = 600.0
+offset_bottom = 89.0
+texture = ExtResource("5_lquwl")
+expand_mode = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=198071819]
 
