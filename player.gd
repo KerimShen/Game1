@@ -32,6 +32,25 @@ func die():
 
 func _ready():
 	attack_area.monitoring = false
+	
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.8, 0, 0)
+	style.border_width_left = 2
+	style.border_width_right = 2
+	style.border_width_top = 2
+	style.border_width_bottom = 2
+	style.border_color = Color(0.3, 0, 0)
+	health_bar.add_theme_stylebox_override("fill", style)
+	
+	var bg_style = StyleBoxFlat.new()
+	bg_style.bg_color = Color(0.1, 0.1, 0.1)
+	bg_style.border_width_left = 2
+	bg_style.border_width_right = 2
+	bg_style.border_width_top = 2
+	bg_style.border_width_bottom = 2
+	bg_style.border_color = Color(0.3, 0, 0)
+	health_bar.add_theme_stylebox_override("background", bg_style)
+	
 
 func _process(delta):
 	if Input.is_action_just_pressed("attack") and can_attack:
