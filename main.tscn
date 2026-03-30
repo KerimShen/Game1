@@ -20,3 +20,12 @@ script = ExtResource("4_1bvp3")
 
 [node name="Enemy2" parent="." unique_id=975993349 instance=ExtResource("2_0xm2m")]
 position = Vector2(500, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=536738239]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1384231143]
+custom_minimum_size = Vector2(200, 20)
+offset_right = 4.0
+offset_bottom = 27.0
+value = 100.0
+show_percentage = false

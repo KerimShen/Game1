@@ -1,19 +1,21 @@
 extends CharacterBody2D
 @onready var attack_area = $AttackArea
+@onready var health_bar = $"../CanvasLayer/ProgressBar"
 const SPEED = 200.0
 
 var can_attack = true
-var healt  = 100 
+var health  = 100 
 var can_take_damage = true
 
 func take_damage(amount):
 	if can_take_damage:
-		healt -= amount
-		print("Oyuncu cani: ", healt)
+		health -= amount
+		health_bar.value = health
+		print("Oyuncu cani: ", health)
 		can_take_damage = false
 		await get_tree().create_timer(1.0).timeout
 		can_take_damage = true 
-		if healt <= 0:
+		if health <= 0:
 			die() 
 
 func die():
