@@ -1,6 +1,8 @@
 extends CharacterBody2D
 @onready var attack_area = $AttackArea
 @onready var health_bar = $"../CanvasLayer/ProgressBar"
+@onready var xp_bar = $"../CanvasLayer/XPBar"
+@onready var level_label = $"../CanvasLayer/Label"
 const SPEED = 200.0
 const GRAVITY = 800.0
 const JUMP_FORCE = -400.0	
@@ -77,6 +79,7 @@ func _physics_process(delta):
 		
 func gain_xp(amount):		
 	xp += amount 
+	xp_bar.value = xp
 	print("XP: ", xp, " / ", xp_to_next_level)
 	if xp >= xp_to_next_level:
 		level_up()
@@ -85,6 +88,10 @@ func level_up():
 	level += 1
 	xp = 0
 	xp_to_next_level = int(xp_to_next_level * 1.5)
+	xp_bar.value = 0
 	max_health += 20
 	health = max_health
+	health_bar.max_value = max_health
+	health_bar.value = health
+	level_label.text = "Level: " + str(level)
 	print("LEVEL ATLADI! Seviye: ", level)		
