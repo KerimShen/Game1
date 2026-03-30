@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cei1ckd14bgpy" path="res://enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bt2htujm7760f" path="res://enemy.gd" id="4_1bvp3"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
+
 [node name="Node2D" type="Node2D" unique_id=1085563119]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1360740204]
@@ -29,3 +31,8 @@ offset_right = 4.0
 offset_bottom = 27.0
 value = 100.0
 show_percentage = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=198071819]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=503034099]
+shape = SubResource("WorldBoundaryShape2D_1bvp3")

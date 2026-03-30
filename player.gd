@@ -2,10 +2,16 @@ extends CharacterBody2D
 @onready var attack_area = $AttackArea
 @onready var health_bar = $"../CanvasLayer/ProgressBar"
 const SPEED = 200.0
+const GRAVITY = 800.0
+const JUMP_FORCE = -400.0	
 
 var can_attack = true
+var max_health = 100
 var health  = 100 
 var can_take_damage = true
+var xp = 0
+var level = 1
+var xp_to_next_level = 100
 
 func take_damage(amount):
 	if can_take_damage:
@@ -50,14 +56,35 @@ func attack():
 func _physics_process(delta):
 	var direction = Vector2.ZERO
 	
+	if not is_on_floor():
+		velocity.y += GRAVITY * delta
+	
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_FORCE
+	
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 	if Input.is_action_pressed("move_left"):
 		direction.x -= 1
-	if Input.is_action_pressed("move_down"):
-		direction.y += 1
-	if Input.is_action_pressed("move_up"):
-		direction.y -= 1
 	
-	velocity = direction.normalized() * SPEED
+	velocity.x = direction.x * SPEED
 	move_and_slide()
+	
+	if direction.x > 0:
+		$Sprite2D.flip_h = false
+	elif direction.x < 0:
+		$Sprite2D.flip_h = true
+		
+func gain_xp(amount):		
+	xp += amount 
+	print("XP: ", xp, " / ", xp_to_next_level)
+	if xp >= xp_to_next_level:
+		level_up()
+		
+func level_up():
+	level += 1
+	xp = 0
+	xp_to_next_level = int(xp_to_next_level * 1.5)
+	max_health += 20
+	health = max_health
+	print("LEVEL ATLADI! Seviye: ", level)		

@@ -8,7 +8,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1113418622 groups=["player"]]
-motion_mode = 1
 script = ExtResource("1_4flbx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1981585911]

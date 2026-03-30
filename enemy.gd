@@ -34,4 +34,7 @@ func take_damage(amount):
 
 func die():
 	print("Düşman öldü!")
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		player.gain_xp(30)
 	queue_free()	
