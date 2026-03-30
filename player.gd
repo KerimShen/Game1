@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var health_bar = $"../CanvasLayer/ProgressBar"
 @onready var xp_bar = $"../CanvasLayer/XPBar"
 @onready var level_label = $"../CanvasLayer/Label"
+@onready var anim = $Sprite2D
 const SPEED = 200.0
 const GRAVITY = 800.0
 const JUMP_FORCE = -400.0	
@@ -91,10 +92,15 @@ func _physics_process(delta):
 	velocity.x = direction.x * SPEED
 	move_and_slide()
 	
+	if direction.x != 0:
+		anim.play("run")
+	else:
+		anim.play("idle")
+	
 	if direction.x > 0:
-		$Sprite2D.flip_h = false
+		anim.flip_h = false
 	elif direction.x < 0:
-		$Sprite2D.flip_h = true
+		anim.flip_h = true
 		
 func gain_xp(amount):		
 	xp += amount 
