@@ -1,15 +1,9 @@
 extends CharacterBody2D
-
 var health = 100
 var speed = 80
 var player = null
 
 func _ready():
-	var rect = ColorRect.new()
-	rect.size = Vector2(50, 50)
-	rect.position = Vector2(-25, -25)
-	rect.color = Color.RED
-	add_child(rect)
 	player = get_tree().get_first_node_in_group("player")
 
 func _physics_process(delta):
@@ -19,12 +13,17 @@ func _physics_process(delta):
 		velocity = direction * speed
 		move_and_slide()
 		
+		if velocity.x > 0:
+			$Sprite2D.flip_h = false
+		elif velocity.x < 0:
+			$Sprite2D.flip_h = true
+		
 		if distance < 60:
 			attack_player()
-			
+
 func attack_player():
-	if player and  player.has_method("take_damage"):
-		player.take_damage(10)			
+	if player and player.has_method("take_damage"):
+		player.take_damage(10)
 
 func take_damage(amount):
 	health -= amount
@@ -37,4 +36,4 @@ func die():
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
 		player.gain_xp(30)
-	queue_free()	
+	queue_free()

@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://cei1ckd14bgpy"]
 
+[ext_resource type="Texture2D" uid="uid://yq8kkemn3x40" path="res://assets/Dungeon1Ninja.png" id="1_7k104"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7k104"]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=555959131]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=793799185]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_7k104")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1887513280]
 shape = SubResource("RectangleShape2D_7k104")

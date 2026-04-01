@@ -39,6 +39,7 @@ func die():
 func _ready():
 	attack_area.monitoring = false
 	
+	
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(1, 0, 0)
 	style.border_width_left = 2
@@ -117,10 +118,11 @@ func _physics_process(delta):
 		mana_bar.value = mana
 	
 	if direction.x != 0:
-		anim.play("run")
+		anim.play("walk")
+		anim.scale = Vector2(0.5, 0.5)
 	else:
 		anim.play("idle")
-	
+		anim.scale = Vector2(0.25, 0.25)
 	if direction.x > 0:
 		anim.flip_h = false
 	elif direction.x < 0:
