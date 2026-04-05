@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf1bnvrocd2kn"]
 
-[ext_resource type="Texture2D" uid="uid://cajak4o1bs3uf" path="res://assets/FirstDungeonLoop.png" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cgkjjmhhxcb8r" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://dawwe2i03kl30" path="res://assets/dungeon1startarea.png" id="1_lquwl"]
 [ext_resource type="PackedScene" uid="uid://cei1ckd14bgpy" path="res://enemy.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bt2htujm7760f" path="res://enemy.gd" id="4_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bh8k54wyp4gpv" path="res://assets/can barı sword.png" id="5_lquwl"]
@@ -11,7 +11,8 @@
 [node name="Node2D" type="Node2D" unique_id=1085563119]
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1360740204]
-texture = ExtResource("1_h2yge")
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("1_lquwl")
 
 [node name="CharacterBody2D" parent="." unique_id=1113418622 instance=ExtResource("1_ig7tw")]
 
@@ -64,6 +65,7 @@ texture = ExtResource("5_lquwl")
 expand_mode = 2
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=198071819]
+position = Vector2(0, 270)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=503034099]
 shape = SubResource("WorldBoundaryShape2D_1bvp3")
